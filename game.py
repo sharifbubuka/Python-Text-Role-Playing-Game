@@ -21,7 +21,7 @@ class player:
         self.hp = 0
         self.mp = 0
         self.status_effects = []
-        self.location = 'b2'
+        self.location = 'a1'
         self.game_over = False
 
 
@@ -32,7 +32,7 @@ myPlayer = player()
 def title_screen_selections():
     option = input('>').strip()
     if option.lower() == 'play':
-        start_game()
+        setup_game()
     elif option.lower() == 'help':
         help_menu()
     elif option.lower() == 'quit':
@@ -184,8 +184,8 @@ def prompt():
         player_examine(action.lower())
 
 
-def player_move():
-    ask = 'Where would you like to move to?\n'
+def player_move(action):
+    ask = f'Where would you like to {action} to?\n'
     dest = input(ask)
     if dest in ['up', 'north']:
         destination = zonemap[myPlayer.location][UP]
@@ -202,7 +202,7 @@ def player_move():
 
 
 def movement_handler(destination):
-    print(f'\n You have moved to the {destination}.')
+    print(f'\n You have moved to {destination}.')
     myPlayer.location = destination
     print_location()
 
